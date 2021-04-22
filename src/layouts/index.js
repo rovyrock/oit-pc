@@ -2,8 +2,8 @@
 // 给个例子，全部注释掉，因为不确定要引入什么版本的tea
 
 import React from 'react';
-import { Layout } from 'tea-component/lib';
-import { Icon as SvgIcon } from '@/components/Icon';
+import { Layout, Icon } from 'tea-component';
+// import { Icon as SvgIcon } from '@/components/Icon';
 import NavHeader from '@/components/header';
 import LeftMenu from '@/components/leftMenu';
 const { Body, Header, Content, Sider } = Layout;
@@ -13,7 +13,10 @@ const routers = [
   {
     title: (
       <div className="menu-item">
-        <SvgIcon type="menu-user" className="menu-item-icon"></SvgIcon>
+        <Icon
+          type="menu-user"
+          className="svg-icon svg-icon-menu-user menu-item-icon"
+        ></Icon>
         <div className="menu-item-text">通用</div>
       </div>
     ),
@@ -32,7 +35,10 @@ const routers = [
   {
     title: (
       <div className="menu-item">
-        <SvgIcon type="menu-user" className="menu-item-icon"></SvgIcon>
+        <Icon
+          type="menu-rule"
+          className="svg-icon svg-icon-menu-rule menu-item-icon"
+        ></Icon>
         <div className="menu-item-text">Demo</div>
       </div>
     ),
@@ -49,6 +55,14 @@ const routers = [
       {
         title: '框架 上下固定',
         to: '/Demo/Framework/verticalFixed',
+      },
+      {
+        title: '框架 两栏布局',
+        to: '/Demo/Framework/twoColumnLayout',
+      },
+      {
+        title: '框架 内容加载中',
+        to: '/Demo/Framework/loading',
       },
       {
         title: '表格 Table',

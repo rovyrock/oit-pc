@@ -15,12 +15,12 @@ import { Tooltip } from 'tea-component/lib/tooltip';
 
 // 引入所有的svg的文件
 
-const requireAll = (requireContext: any) => {
-  requireContext.keys().map(requireContext);
-  // console.log(requireAll)
-};
-const req: any = (require as any).context('../../assets/svgs', false, /\.svg$/);
-requireAll(req);
+// const requireAll = (requireContext: any) => {
+//   requireContext.keys().map(requireContext);
+//   // console.log(requireAll)
+// };
+// const req: any = (require as any).context('../../assets/svgs', false, /\.svg$/);
+// requireAll(req);
 
 export interface IconProps extends HTMLAttributes<HTMLElement> {
   /** 图标类型 */
@@ -66,9 +66,9 @@ export const Icon = forwardRef((props: IconProps, ref: Ref<HTMLElement>) => {
   const Parent = link ? 'a' : 'i';
   const icon = (
     <Parent ref={ref as any} className={iconClassName} {...htmlProps}>
-      <svg aria-hidden="true">
+      {/* <svg aria-hidden="true">
         <use xlinkHref={iconName} />
-      </svg>
+      </svg> */}
     </Parent>
   );
 

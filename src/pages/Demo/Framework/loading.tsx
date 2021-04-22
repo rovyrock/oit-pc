@@ -1,5 +1,7 @@
-import React from 'react';
+import { format } from 'prettier';
+import React, { useState, useEffect } from 'react';
 import { Layout, Card, Button } from 'tea-component';
+import ContentLoading from '@/components/Loading';
 
 const { Body, Content } = Layout;
 
@@ -24,10 +26,7 @@ function LayoutExample() {
     <Layout>
       <Body>
         <Content className="oit-layout--vertical">
-          <Content.Header
-            showBackButton
-            title="上下固定 (oit-layout--vertical)"
-          />
+          <Content.Header title="加载内容状态" />
           <Content.Body full>
             {Object.entries([1, 2, 3, 4, 5, 6, 7]).map((item, index) => (
               <Card key={index}>
@@ -56,9 +55,16 @@ function LayoutExample() {
 }
 
 export default function Demo() {
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const [loadingStatus, setLoadingStatus] = useState(true);
+  useEffect(() => {
+    async function init() {
+      await sleep(3000);
+      setLoadingStatus(false);
+    }
+    init();
+  });
   return (
-    <Content>
-      <LayoutExample />
-    </Content>
+    <Content>{loadingStatus ? <ContentLoading /> : <LayoutExample />}</Content>
   );
 }

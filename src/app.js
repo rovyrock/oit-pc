@@ -1,5 +1,8 @@
 // 外网版本样式
 import 'oit-style';
+// 业务自定义样式
+import '@/assets/css/index.css';
+
 import store from './store/global';
 
 export const qiankun = {
