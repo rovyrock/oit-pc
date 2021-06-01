@@ -22,4 +22,7 @@ export default defineConfig({
   // 不引入antd，包括样式
   antd: false,
   chainWebpack(config, { webpack }) {},
+  plugins: ['./plugins/svg-icon.ts'],
+  svgIcon: {},
+  webpack5: {},
 });

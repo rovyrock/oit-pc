@@ -1,16 +1,28 @@
-import type { HTMLAttributes, Ref, ReactNode } from 'react';
-import { forwardRef } from 'react';
+/*
+ * 项目名称:oit-data-compliance-web
+ * 文件名称:SvgIcon.js
+ * Date:2020/8/19 下午2:10
+ * Author:shy
+ *
+ */
+
+import React, { forwardRef, Ref, HTMLAttributes } from 'react';
+// import '@/assets/css/pages/svgicon.css';
 import classNames from 'classnames';
+import { Bubble } from 'tea-component/lib/bubble';
+import { Tooltip } from 'tea-component/lib/tooltip';
+// import { useConfig } from "../_util/config-context";
 
 // 引入所有的svg的文件
 
-const requireAll = (requireContext: any) => {
-  requireContext.keys().map(requireContext);
-};
-const req: any = (require as any).context('../../assets/svgs', false, /\.svg$/);
-requireAll(req);
+// const requireAll = (requireContext: any) => {
+//   requireContext.keys().map(requireContext);
+//   // console.log(requireAll)
+// };
+// const req: any = (require as any).context('../../assets/svgs', false, /\.svg$/);
+// requireAll(req);
 
-export type IconProps = {
+export interface IconProps extends HTMLAttributes<HTMLElement> {
   /** 图标类型 */
   type: string;
   /**
@@ -29,20 +41,21 @@ export type IconProps = {
   /**
    * 在图标上添加 Tooltip 的快捷方式，详见 [Tooltip](/component/tooltip) 组件
    */
-  tooltip?: ReactNode;
+  tooltip?: React.ReactNode;
   /**
    * 在图标上添加 Bubble 的快捷方式，详见 [Bubble](/component/bubble) 组件
    */
-  bubble?: ReactNode;
-} & HTMLAttributes<HTMLElement>;
+  bubble?: React.ReactNode;
+}
 export const Icon = forwardRef((props: IconProps, ref: Ref<HTMLElement>) => {
   // const { classPrefix } = useConfig();
   const { type, size, className, tooltip, bubble, link, ...htmlProps } = props;
   const iconName = `#icon-${type}${size === 'l' ? `-${size}` : ''}`;
   const iconClassName = classNames(
-    'customize-svgicon',
-    `customize-svgicon-${props.type}`,
-    'menu-item-icon',
+    'svg-icon',
+    `svg-icon-${props.type}`,
+    // `${classPrefix}-icon`,
+    // `${classPrefix}-icon-${type}`,
     className,
     {
       'size-s': size === 's',
@@ -53,13 +66,17 @@ export const Icon = forwardRef((props: IconProps, ref: Ref<HTMLElement>) => {
   const Parent = link ? 'a' : 'i';
   const icon = (
     <Parent ref={ref as any} className={iconClassName} {...htmlProps}>
-      <svg aria-hidden="true">
+      {/* <svg aria-hidden="true">
         <use xlinkHref={iconName} />
-      </svg>
+      </svg> */}
     </Parent>
   );
 
+  if (tooltip) {
+    return <Tooltip title={tooltip}>{icon}</Tooltip>;
+  }
+  if (bubble) {
+    return <Bubble content={bubble}>{icon}</Bubble>;
+  }
   return icon;
 });
-
-// export default Icon;

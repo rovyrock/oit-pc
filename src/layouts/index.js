@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { Layout, Icon } from 'tea-component';
-// import { Icon as SvgIcon } from '@/components/Icon';
+import { Icon as SvgIcon } from '@/components/Icon';
 import NavHeader from '@/components/header';
 import LeftMenu from '@/components/leftMenu';
 const { Body, Header, Content, Sider } = Layout;
@@ -69,6 +69,19 @@ const routers = [
         to: '/Demo/Table',
       },
     ],
+  },
+  {
+    title: (
+      <div className="menu-item">
+        <SvgIcon
+          type="menu-DB-Introduce"
+          // className="svg-icon"
+        ></SvgIcon>
+        <div className="menu-item-text">Customize</div>
+      </div>
+    ),
+    to: '/Tea/Icon',
+    subMenu: [],
   },
 ];
 
