@@ -10,5 +10,12 @@ oit pc template
 组件参数说明，请参考[Tea 组件库官网](https://tea-design.github.io/componen)
 
 - 样式
-使用 oit-style@2.0.0，基于tea-component@2.6.9进行fixed
+组件库样式使用 `oit-style` 不使用Tea自带的样式，工作台的样式是基于tea-component@2.6.9进行fixed的
 
+```bash
+# 每次初始化的时候，都升级下oit-style，避免使用旧版的样式
+yarn add oit-style
+```
+
+- 菜单图标
+使用@ant-design/icons引入左侧导航图标

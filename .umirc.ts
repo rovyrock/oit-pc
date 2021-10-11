@@ -1,14 +1,12 @@
 import { defineConfig } from 'umi';
-const path = require('path');
-
-function resolve(dir: string) {
-  return path.join(__dirname, dir);
-}
 
 export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  hash: true,
+  fastRefresh: {},
+  runtimePublicPath: true,
   // base: '/',
   publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   qiankun: {
@@ -22,7 +20,4 @@ export default defineConfig({
   // 不引入antd，包括样式
   antd: false,
   chainWebpack(config, { webpack }) {},
-  plugins: ['./plugins/svg-icon.ts'],
-  svgIcon: {},
-  webpack5: {},
 });

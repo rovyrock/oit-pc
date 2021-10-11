@@ -1,14 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import {
-  Layout,
-  Card,
-  Text,
-  ExternalLink,
-  Menu,
-  Icon,
-  Stepper,
-  Button,
-} from 'tea-component';
+import React from 'react';
+import { Layout, Card } from 'tea-component';
 // import Form from "../Form/single";
 // import Content02 from "../Tab/TabPanel02";
 

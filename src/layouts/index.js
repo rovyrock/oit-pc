@@ -2,10 +2,15 @@
 // 给个例子，全部注释掉，因为不确定要引入什么版本的tea
 
 import React from 'react';
-import { Layout, Icon } from 'tea-component';
-import { Icon as SvgIcon } from '@/components/Icon';
+import { Layout } from 'tea-component';
 import NavHeader from '@/components/header';
 import LeftMenu from '@/components/leftMenu';
+// 左侧菜单图标
+import { createFromIconfontCN } from '@ant-design/icons';
+const SvgIcon = createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/font_2452837_5z70tjgmtk2.js', // 在 iconfont.cn 上生成
+});
+
 const { Body, Header, Content, Sider } = Layout;
 
 // 直接在这里写路由列表
@@ -13,10 +18,10 @@ const routers = [
   {
     title: (
       <div className="menu-item">
-        <Icon
-          type="menu-user"
-          className="svg-icon svg-icon-menu-user menu-item-icon"
-        ></Icon>
+        <SvgIcon
+          type="svg-icon-menu-user"
+          className="svg-icon menu-item-icon"
+        />
         <div className="menu-item-text">通用</div>
       </div>
     ),
@@ -35,10 +40,10 @@ const routers = [
   {
     title: (
       <div className="menu-item">
-        <Icon
-          type="menu-rule"
-          className="svg-icon svg-icon-menu-rule menu-item-icon"
-        ></Icon>
+        <SvgIcon
+          type="svg-icon-menu-rule"
+          className="svg-icon menu-item-icon"
+        />
         <div className="menu-item-text">Demo</div>
       </div>
     ),
@@ -74,9 +79,9 @@ const routers = [
     title: (
       <div className="menu-item">
         <SvgIcon
-          type="menu-DB-Introduce"
-          // className="svg-icon"
-        ></SvgIcon>
+          type="svg-icon-menu-maple-globalconfig"
+          className="svg-icon menu-item-icon"
+        />
         <div className="menu-item-text">Customize</div>
       </div>
     ),

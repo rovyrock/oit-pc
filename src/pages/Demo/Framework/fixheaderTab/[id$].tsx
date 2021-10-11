@@ -1,47 +1,83 @@
-import React, { useState, useCallback, useMemo } from 'react';
-
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import {
+  Tabs,
+  TabPanel,
   Layout,
   Card,
   Form,
   InputAdornment,
   Input,
-  Checkbox,
-  Table,
   Tree,
-} from 'tea-component/lib';
+} from 'tea-component';
+import { Link } from 'react-router-dom';
 
+const tabs = [
+  { id: 'android', label: '基本信息' },
+  { id: 'ios', label: '弹性网卡' },
+  { id: 'windows', label: '监控信息' },
+];
 const { Body, Header, Content } = Layout;
-const { expandable, selectable, indentable } = Table.addons;
+export default function App(props) {
+  let id = props.match.params.id || 'android';
+  // console.log("动态id", props, props.match.params.id)
+  const routePath = '/Demo/Framework/fixheadertab';
+  const [activeId, setActiveId] = useState(id || 'android');
+  useEffect(() => {
+    // 切换/默认为Andriod
+    setActiveId(id || 'android');
+  }, [id]);
 
-function TreeExample() {
-  const [selectIds, setSelectIds] = useState(['0-0-0-1']);
   return (
-    <Tree
-      className="oit-tree--select"
-      selectable
-      selectedIds={selectIds}
-      onSelect={(value, context) => {
-        console.log(value, context);
-        setSelectIds(value);
-      }}
-      defaultExpandedIds={['0-0-0', '0-0-1']}
-    >
-      <Tree.Node id="0-0-0" content="0-0-0">
-        <Tree.Node id="0-0-0-1" content="0-0-0-1" />
-        <Tree.Node id="0-0-0-2" content="0-0-0-2" />
-      </Tree.Node>
-      <Tree.Node id="0-0-1" content="0-0-1">
-        <Tree.Node id="0-0-1-1" content="0-0-1-1" />
-        <Tree.Node id="0-0-1-2" content="0-0-1-2" />
-      </Tree.Node>
-    </Tree>
+    <Layout>
+      <Body>
+        <Content className="oit-layout--fixtabs">
+          <Content.Header title="标题+Tabs选项卡置顶 (oit-layout--fixtabs)">
+            <Tabs
+              tabs={tabs}
+              activeId={activeId}
+              // tabBarRender={(children, tab) => (
+              //   <Link to={`${routePath}/${tab.id}`}>{children}</Link>
+              // )}
+              onActive={(tab) => {
+                setActiveId(tab.id);
+              }}
+            ></Tabs>
+          </Content.Header>
+          <Content.Body full>
+            <TabContainer tabs={tabs} topicId={activeId} />
+          </Content.Body>
+        </Content>
+      </Body>
+    </Layout>
   );
 }
 
-const records = getMockRecords();
+// tab内容
+function TabContainer(props: any) {
+  const { tabs, topicId } = props;
+  return (
+    <>
+      {tabs.map((tab: any) => {
+        return (
+          tab.id === topicId && (
+            <TabPanel key={tab.id} id={tab.id} style={{ padding: 0 }}>
+              {tab.id === 'android' ? (
+                <TabAndroid />
+              ) : tab.id === 'ios' ? (
+                <TabIos />
+              ) : (
+                <TabWindows />
+              )}
+            </TabPanel>
+          )
+        );
+      })}
+    </>
+  );
+}
 
-export default function App() {
+function TabAndroid(props) {
+  const records = getMockRecords();
   const [paymode, setPaymode] = useState([]);
   // 当前选中的消息
   const [selectedKeys, setSelectedKeys] = useState([]);
@@ -112,7 +148,7 @@ export default function App() {
   const relations = useMemo(() => getRecordRelations(records), [
     getRecordRelations,
   ]);
-  console.log('records', relations, records, getRecordRelations);
+  // console.log('records', relations, records, getRecordRelations);
   return (
     <>
       <Card>
@@ -152,6 +188,55 @@ export default function App() {
         </Card.Body>
       </Card>
     </>
+  );
+}
+
+function TabWindows(props) {
+  return (
+    <>
+      <Card>
+        <Card.Body title="图标" subtitle="(16*16)">
+          hello Windows
+        </Card.Body>
+      </Card>
+    </>
+  );
+}
+
+function TabIos(props) {
+  return (
+    <>
+      <Card>
+        <Card.Body title="图标" subtitle="(16*16)">
+          hello IOS
+        </Card.Body>
+      </Card>
+    </>
+  );
+}
+
+function TreeExample() {
+  const [selectIds, setSelectIds] = useState(['0-0-0-1']);
+  return (
+    <Tree
+      className="oit-tree--select"
+      selectable
+      selectedIds={selectIds}
+      onSelect={(value, context) => {
+        console.log(value, context);
+        setSelectIds(value);
+      }}
+      defaultExpandedIds={['0-0-0', '0-0-1']}
+    >
+      <Tree.Node id="0-0-0" content="0-0-0">
+        <Tree.Node id="0-0-0-1" content="0-0-0-1" />
+        <Tree.Node id="0-0-0-2" content="0-0-0-2" />
+      </Tree.Node>
+      <Tree.Node id="0-0-1" content="0-0-1">
+        <Tree.Node id="0-0-1-1" content="0-0-1-1" />
+        <Tree.Node id="0-0-1-2" content="0-0-1-2" />
+      </Tree.Node>
+    </Tree>
   );
 }
 

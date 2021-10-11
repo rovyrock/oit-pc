@@ -2,7 +2,8 @@ import React from 'react';
 import { Icon, Bubble, Card, Layout, Form } from 'tea-component';
 const { Content, Body } = Layout;
 
-import { Icon as SvgIcon } from '@/components/Icon';
+// import { Icon as SvgIcon } from '@/components/Icon';
+import SvgIcon from '@/components/AntDesignIcon';
 
 // 暂无 SVG：'records', 'sales', 'shutdown', 'running', 'deploy', 'links', 'client', 'alarm', 'try', 'new', 'favorable'
 // prettier-ignore
@@ -151,6 +152,7 @@ export default function IconExample() {
                       <SvgIcon
                         key={type}
                         type={type}
+                        className="svg-icon"
                         bubble={`<SvgIcon type="${type}" />`}
                         style={{ margin: '0 10px 10px 0', cursor: 'pointer' }}
                       />
@@ -162,6 +164,7 @@ export default function IconExample() {
                       <SvgIcon
                         key={type}
                         type={type}
+                        className="svg-icon"
                         bubble={`<SvgIcon type="${type}" />`}
                         style={{ margin: '0 10px 10px 0', cursor: 'pointer' }}
                       />
@@ -173,6 +176,7 @@ export default function IconExample() {
                       <SvgIcon
                         key={type}
                         type={type}
+                        className="svg-icon"
                         bubble={`<SvgIcon type="${type}" />`}
                         style={{ margin: '0 10px 10px 0', cursor: 'pointer' }}
                       />
@@ -183,6 +187,7 @@ export default function IconExample() {
                       <SvgIcon
                         key={type}
                         type={type}
+                        className="svg-icon"
                         bubble={`<SvgIcon type="${type}" />`}
                         style={{ margin: '0 10px 10px 0', cursor: 'pointer' }}
                       />
@@ -194,6 +199,7 @@ export default function IconExample() {
                       <SvgIcon
                         key={type}
                         type={type}
+                        className="svg-icon"
                         bubble={`<SvgIcon type="${type}" />`}
                         style={{ margin: '0 10px 10px 0', cursor: 'pointer' }}
                       />

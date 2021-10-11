@@ -37,6 +37,27 @@ export default function App() {
                 </Button>
               </Card.Body>
             </Card>
+            <Card>
+              <Card.Body title="拒绝Decline">
+                <Button className="tea-btn tea-btn--decline" style={style}>
+                  次要按钮
+                </Button>
+                <Button
+                  className="tea-btn tea-btn--decline"
+                  style={style}
+                  loading
+                >
+                  次要按钮
+                </Button>
+                <Button
+                  className="tea-btn tea-btn--decline"
+                  style={style}
+                  disabled
+                >
+                  禁用
+                </Button>
+              </Card.Body>
+            </Card>
 
             <Card>
               <Card.Body title="文字按钮和链接按钮">
